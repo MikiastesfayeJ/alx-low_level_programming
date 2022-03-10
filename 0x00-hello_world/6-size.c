@@ -1,10 +1,8 @@
 #include <stdio.h>
 /**
- *
- *main - Entry point
- *
- *Return: Always 0 (Success)
- **/
+ * main - Prints out the sizes of various data types on the computer
+ * Return: 0 if success
+ */
 int main(void)
 {
 	printf("Size of a char: %ld byte(s)\n", sizeof(char));
