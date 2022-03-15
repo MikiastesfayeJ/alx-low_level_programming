@@ -2,7 +2,7 @@
 /**
  * _islower - Short description, single line
  * @c: contains value to be compared
- * Retur: Always 0.
+ * Return: Always 0.
  */
 int _islower(int c)
 {
