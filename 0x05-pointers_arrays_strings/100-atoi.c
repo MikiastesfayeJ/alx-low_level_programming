@@ -5,7 +5,7 @@
  *
  * Return: value of s
  */
-int _atoi(char *S);
+int _atoi(char *S)
 {
 	int i, sign, numb;
 
