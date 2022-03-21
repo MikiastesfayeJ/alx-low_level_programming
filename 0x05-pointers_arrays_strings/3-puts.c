@@ -1,4 +1,4 @@
-#include "coding.h"
+#include "main.h"
 /**
  * _puts - function with one argument
  * @str: one char type argument
