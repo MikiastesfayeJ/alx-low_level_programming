@@ -28,3 +28,21 @@ int separator(char c)
 	}
 }
 
+char *cap_string(char *s)
+{
+	int count, upper;
+
+	upper = -32;
+	count = 0;
+	while (s[count] != '\0')
+	{
+		if (s[count] >= 'a' && s[count] <= 'z')
+		{
+			if (s[count] == *s || separator(s[count - 1]))
+				s[count] += upper;
+		}
+			count++;
+	}
+	return (s);
+}
+
