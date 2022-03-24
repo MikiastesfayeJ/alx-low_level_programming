@@ -19,7 +19,7 @@ void print_line(char *c, int s, int l)
 		else
 			printf("  ");
 		if (j % 2)
-			_putchar(' ' );
+			_putchar(' ');
 	}
 	for (k = 0; k <= s; k++)
 	{
