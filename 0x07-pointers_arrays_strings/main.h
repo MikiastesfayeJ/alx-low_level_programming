@@ -8,4 +8,5 @@ void print_chessboard(char (*a)[8]);
 void print_diagsums(int *a, int size);
 void set_string(char **s, char *to);
 int coincidence(char *a, char *b);
+int _putchar(char);
 
