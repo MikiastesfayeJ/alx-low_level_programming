@@ -11,9 +11,13 @@ char *_strstr(char *haystack, char *needle)
 	while (*haystack)
 	{
 		if ((*haystack == *needle && coincidence(haystack, needle) == 1) || !*needle)
+		{
 			return (haystack);
+		}
 		else
+		{
 			haystack++;
+		}
 	}
 	return (0);
 }
@@ -36,4 +40,3 @@ int coincidence(char *a, char *b)
 	else
 		return (0);
 }
-
