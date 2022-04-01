@@ -3,10 +3,10 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <stdbool.h>
+
 /**
  * coinConverter - Helper function that does all the mathematics
  * @i: Passed in variable from main for calculations
- *
  * Return: The number of coins needed minimum for the passed in variable
  */
 int coinConverter(int i)
@@ -27,7 +27,7 @@ int coinConverter(int i)
 		{
 			if (i % 10 == 6)
 				i -= 1;
-			ele
+			else
 				i -= 2;
 		}
 		else
@@ -40,7 +40,6 @@ int coinConverter(int i)
  * main - Takes in exactly one argument for minimum coin count
  * @argc: Number of command line arguments
  * @argv: Array name
- *
  * Return: 0 if exactly 1 argument is passed into this program, 1 otherwise
  */
 int main(int argc, char *argv[])
@@ -63,5 +62,3 @@ int main(int argc, char *argv[])
 	}
 	return (0);
 }
-
-
