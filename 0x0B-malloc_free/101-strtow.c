@@ -1,63 +1,35 @@
-#include "main.h"
-#include <stdio.h>
 #include <stdlib.h>
+#include "main.h"
 /**
- * strtow - concatenates all the arguments of your program
- *@str: string
- *@av: arguments
- * Return: a pointer to a new string
- */
+* **strtow - function that splits a string into words.
+* @str : pointer
+* Return: Char
+*/
 char **strtow(char *str)
 {
-	int i, w, j, k, count, m, wordf;
-	char **p;
-	char *x;
+	char **d;
+	int i;
+	int j = 0;
+	int con = 0;
 
-	w = 0;
-	j = 0;
-	i = 0;
-	count = 0;
-	if (*str == '\0' || str == NULL)
+	if (str == NULL)
 		return (NULL);
-	for (i = 0; str[i] != '\0'; i++)
+	for (i = 0 ; str[i] != '\0' ; i++)
 	{
-		if (str[i] == ' ' && (str[i + 1] != ' ' || str[i + 1] == '\0'))
-			w++;
+		if (str[i] != 32)
+			con++;
 	}
-	p = (char **)malloc((w + 1) * sizeof(char *));
-	if (p == NULL)
+	d = malloc(sizeof(char) * con);
+	if (d == NULL)
 		return (NULL);
-	for (wordf = 0; str[wordf] && j <= w; wordf++)
+	for (i = 0 ; str[i] != '\0' ; i++)
 	{
-		count = 0;
-		if (str[wordf] != ' ')
+		if (str[i] != 32)
 		{
-			for (i = wordf ; str[i] != '\0'; i++)
-			{
-				if (str[i] == ' ')
-					break;
-				count++;
-			}
-			*(p + j) = (char *)malloc((count + 1) * sizeof(char));
-			if (*(p + j) == NULL)
-			{
-				for (k = 0; k <= j; k++)
-				{
-					x = p[k];
-					free(x);
-				}
-				free(p);
-				return (NULL);
-			}
-			for (m = 0; wordf < i; wordf++)
-			{
-				p[j][m] = str[wordf];
-				m++;
-			}
-			p[j][m] = '\0';
+			*d[j] = str[i];
 			j++;
 		}
+		else
 	}
-	p[j] = NULL;
-	return (p);
+	return (d);
 }
