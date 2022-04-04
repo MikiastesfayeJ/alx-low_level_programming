@@ -30,6 +30,8 @@ char **strtow(char *str)
 			j++;
 		}
 		else
+		{
+		}
 	}
 	return (d);
 }
