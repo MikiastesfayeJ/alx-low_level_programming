@@ -38,22 +38,22 @@ int _strlen(char *s)
  */
 char *big_multiply(char *num1, char *num2)
 {
-	char *r;
+	char *mul;
 	int l1, l2, a, b, c, x;
 
 	l1 = _strlen(num1);
 	l2 = _strlen(num2);
-	r = malloc(a = x = l1 + l2);
-	if (!r)
+	mul = malloc(a = x = l1 + l2);
+	if (!mul)
 		printf("Error\n"), exit(98);
 	while (a--)
-		r[a] = 0;
+		mul[a] = 0;
 
 	for (l1--; l1 >= 0; l1--)
 	{
 		if (!_isdigit(num1[l1]))
 		{
-			free(r);
+			free(mul);
 			printf("Error\n"), exit(98);
 		}
 		a = num1[l1] - '0';
@@ -63,20 +63,20 @@ char *big_multiply(char *num1, char *num2)
 		{
 			if (!_isdigit(num2[l2]))
 			{
-				free(r);
+				free(mul);
 				printf("Error\n"), exit(98);
 			}
 			b = num2[l2] - '0';
 
-			c += r[l1 + l2 + 1] + (a * b);
-			r[l1 + l2 + 1] = c % 10;
+			c += mul[l1 + l2 + 1] + (a * b);
+			mul[l1 + l2 + 1] = c % 10;
 
 			c /= 10;
 		}
 		if (c)
-			r[l1 + l2 + 1] += c;
+			mul[l1 + l2 + 1] += c;
 	}
-	return (r);
+	return (mul);
 }
 
 
@@ -89,27 +89,27 @@ char *big_multiply(char *num1, char *num2)
  */
 int main(int argc, char **argv)
 {
-	char *r;
+	char *mul;
 	int a, c, x;
 
 	if (argc != 3)
 		printf("Error\n"), exit(98);
 
 	x = _strlen(argv[1]) + _strlen(argv[2]);
-	r = big_multiply(argv[1], argv[2]);
+	mul = big_multiply(argv[1], argv[2]);
 	c = 0;
 	a = 0;
 	while (c < x)
 	{
-		if (r[c])
+		if (mul[c])
 			a = 1;
 		if (a)
-			_putchar(r[c] + '0');
+			_putchar(mul[c] + '0');
 		c++;
 	}
 	if (!a)
 		_putchar('0');
 	_putchar('\n');
-	free(r);
+	free(mul);
 	return (0);
 }
