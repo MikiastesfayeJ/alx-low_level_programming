@@ -1,8 +1,9 @@
 #include "variadic_functions.h"
 /**
  * sum_them_all - sum of variadic variable
- * @n:const
- * Return:int
+ * @n: const
+ *
+ * Return: int
  */
 int sum_them_all(const unsigned int n, ...)
 {
