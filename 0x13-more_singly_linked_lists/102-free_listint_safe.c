@@ -1,54 +1,36 @@
 #include "lists.h"
-#include <stdlib.h>
-#include <stdio.h>
-
 /**
- * find_listint_loop_pl - finds a loop in a linked list
+ * free_listint_safe - frees a linked list
+ * @h: pointer to the first node in the linked list
  *
- * @head: linked list to search
- *
- * Return: address of node where loop starts/returns, NULL if no loop
+ * Return: number of elements in the freed list
  */
-listint_t *find_listint_loop_pl(listint_t *head)
-{
-	listint_t *ptr, *end;
-
-	if (head == NULL)
-		return (NULL);
-	for (end = head->next; end != NULL; end = end->next)
-	{
-		if (end == end->next)
-			return (end);
-		for (ptr = head; ptr != end; ptr = ptr->next)
-			if (ptr == end->next)
-				return (end->next);
-	}
-	return (NULL);
-}
-
-/**
- * print_listint_safe - prints a linked list, even if it
- * has a loop
- *
- * @head: head of list to print
- *
- * Return: number of nodes printed
- */
-size_t print_listint_safe(const listint_t *head)
+size_t free_listint_safe(listint_t **h)
 {
 	size_t len = 0;
-	int loop;
-	listint_t *loopnode;
+	int diff;
+	listint_t *temp;
 
-	loopnode = find_listint_loop_pl((listint_t *) head);
-	for (len = 0, loop = 1; (head != loopnode || loop) && head != NULL; len++)
+	if (!h || !*h)
+		return (0);
+	while (*h)
 	{
-		printf("[%p] %d\n", (void *) head, head->n);
-		if (head == loopnode)
-			loop = 0;
-		head = head->next;
+		diff = *h - (*h)->next;
+		if (diff > 0)
+		{
+			temp = (*h)->next;
+			free(*h);
+			*h = temp;
+			len++;
+		}
+		else
+		{
+			free(*h);
+			*h = NULL;
+			len++;
+			break;
+		}
 	}
-	if (loopnode != NULL)
-		printf("-> [%p] %d\n", (void *) head, head->n);
+	*h = NULL;
 	return (len);
 }
