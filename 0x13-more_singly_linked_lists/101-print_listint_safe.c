@@ -1,32 +1,28 @@
-#include <stdlib.h>
-#include <stdio.h>
 #include "lists.h"
+
 /**
- * print_listint_safe - print list
- * @head: head node
- * Return: amount of nodes in list
+ * print_listint_safe - prints a linked list, safely
+ * @head: list of type listint_t to print
+ *
+ * Return: number of nodes in the list
  */
 size_t print_listint_safe(const listint_t *head)
 {
-	int size = 0, i;
-	const listint_t *tmp[100];
+    size_t num = 0;
+    long int diff;
 
-	if (!head)
-		exit(98);
-	while (head)
-	{
-		for (i = 0; i < size; i++)
-		{
-			if (tmp[i] == head)
-			{
-				printf("-> [%p] %d\n", (void *)head, head->n);
-				return (size);
-			}
-		}
-		printf("[%p] %d\n", (void *)head, head->n);
-		tmp[size] = head;
-		size++;
-		head = head->next;
-	}
-	return (size);
+    while (head)
+    {
+        diff = head - head->next;
+        num++;
+        printf("[%p] %d\n", (void *)head, head->n);
+        if (diff > 0)
+            head = head->next;
+        else
+        {
+            printf("-> [%p] %d\n", (void *)head->next, head->next->n);
+            break;
+        }
+    }
+    return (num);
 }
