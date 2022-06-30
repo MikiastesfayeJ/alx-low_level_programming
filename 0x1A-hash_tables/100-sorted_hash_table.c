@@ -45,11 +45,9 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 	if (copy == NULL)
 		return (0);
 	index = key_index((const unsigned char *)key, ht->size);
-	/*shead points to first element of the sorted linked list*/
 	tmp = ht->shead;
 	while (tmp)
 	{
-		/*updating a key that exists*/
 		if (strcmp(tmp->key, key) == 0)
 		{
 			free(tmp->value);
@@ -72,8 +70,6 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 		return (0);
 	}
 	new->value = copy;
-	/*Node assigned from end, next points to the beginning of
-	  linked list*/
 	new->next = ht->array[index];
 	ht->array[index] = new;
 	if (ht->shead == NULL)
@@ -83,7 +79,6 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 		ht->shead = new;
 		ht->stail = new;
 	}
-	/*sorting, value greater than the key*/
 	else if (strcmp(ht->shead->key, key) > 0)
 	{
 		new->sprev = NULL;
@@ -91,7 +86,6 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 		ht->shead->sprev = new;
 		ht->shead = new;
 	}
-	/*value less than*/
 	else
 	{
 		tmp = ht->shead;
